@@ -1,0 +1,9 @@
+{
+  "firebase": "toasty",
+  "public": "wwwroot",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
