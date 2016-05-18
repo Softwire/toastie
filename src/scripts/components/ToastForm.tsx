@@ -1,6 +1,7 @@
 /// <reference path="../main.d.ts" />
 
 import * as React from "react";
+import { ToastClient } from "../ToastClient"
 
 interface ToastFormState {
   message: string;
@@ -34,6 +35,7 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
     if (!this.canSend()) {
       return;
     }
+    ToastClient.sendToast(this.state.message);
     this.setState((s, p) => {
       s.message = "";
       return s;
