@@ -1,4 +1,5 @@
 var gulp = require("gulp"),
+  autoprefixer = require("gulp-autoprefixer");
   del = require("del"),
   livereload = require("gulp-livereload"),
   nodemon = require("gulp-nodemon"),
@@ -30,6 +31,10 @@ gulp.task("webpack", function () {
 gulp.task("sass", function () {
   return gulp.src(["src/styles/**/*.scss"])
     .pipe(sass())
+    .pipe(autoprefixer({
+      browsers: ["last 2 versions"],
+      cascade: false
+    }))
     .pipe(gulp.dest("wwwroot/styles"))
     .pipe(livereload());
 });
