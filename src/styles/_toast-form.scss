@@ -1,0 +1,38 @@
+@import "variables";
+
+#toast-form {
+  #message-box {
+    width: 100%;
+    position: relative;
+    color: $toastyBlue;
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      box-sizing: border-box;
+      padding: 10px;
+      resize: none;
+      border: none;
+      font-size: medium;
+      font-family: inherit;
+      color: inherit;
+      background-color: rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.6);
+      }
+    }
+    #characters-remaining {
+      width: 100%;
+      box-sizing: border-box;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      text-align: right;
+      padding: 8px;
+      font-size: xx-small;
+      &.negative {
+        color: red;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 @import "variables";
 @import "logo";
+@import "toast-form";
 
 #sidebar {
   background-color: $toastyYellow;
@@ -10,5 +11,9 @@
 
   #logo {
     width: 60%;
+  }
+
+  #toast-form {
+    width: 100%;
   }
 }
