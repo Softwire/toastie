@@ -19,7 +19,10 @@ gulp.task("content", function () {
     .pipe(livereload());
 });
 
-gulp.task("static-assets", ["html", "content"]);
+gulp.task("static-assets", ["html"], function() {
+  return gulp.src("src/favicon.ico")
+    .pipe(gulp.dest("wwwroot"));
+});
 
 var webpackConfig = require("./webpack.config.js");
 gulp.task("webpack", function () {
