@@ -10,11 +10,16 @@ interface ToastCardProps {
 export class ToastCard extends React.Component<ToastCardProps, {}> {
   render() {
     return <div className="toast-card">
-      <div className="message">
-        { this.props.toast.message }
+      <div className="toast-image">
+        <span className="icon-toast"></span>
       </div>
-      <div className="timestamp">
-        { new Date(this.props.toast.timestamp).toLocaleString() }
+      <div className="toast-body">
+        <div className="message">
+          { this.props.toast.message }
+        </div>
+        <div className="timestamp">
+          { new Date(this.props.toast.timestamp).toLocaleString() }
+        </div>
       </div>
     </div>;
   }

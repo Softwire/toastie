@@ -3,18 +3,38 @@
   height: 160px;
   box-sizing: border-box;
   margin: 10px;
-  padding: 8px;
+  padding: 5px;
   background-color: $toastyBlueHighlight;
   color: white;
   display: flex;
-  flex-direction: column;
-  .message {
+  .toast-image {
+    background-color: darken($toastyBlueHighlight, 5);
+    color: $toastyBlueHighlight;
     flex: auto;
-    word-wrap: break-word;
+    font-size: 50px;
+    margin: 5px 10px 5px 5px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
   }
-  .timestamp {
-    font-size: small;
-    width: 100%;
-    text-align: right;
+  .toast-body {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    width: 240px;
+    min-width: 240px;
+    .message {
+      width: 100%;
+      max-height: 130px;
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+    .timestamp {
+      font-size: small;
+      width: 100%;
+      text-align: right;
+    }
   }
 }
