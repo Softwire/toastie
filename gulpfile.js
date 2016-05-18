@@ -4,18 +4,13 @@ var gulp = require("gulp"),
   livereload = require("gulp-livereload"),
   nodemon = require("gulp-nodemon"),
   open = require("gulp-open"),
+  plumber = require("gulp-plumber"),
   sass = require("gulp-sass"),
   webpack = require("webpack-stream");
 
 gulp.task("html", function () {
   return gulp.src(["src/**/*.html"])
     .pipe(gulp.dest("wwwroot"))
-    .pipe(livereload());
-});
-
-gulp.task("content", function () {
-  return gulp.src(["src/content/**/*"])
-    .pipe(gulp.dest("wwwroot/content"))
     .pipe(livereload());
 });
 
@@ -32,13 +27,16 @@ gulp.task("static-assets", ["html", "fonts"], function() {
 
 var webpackConfig = require("./webpack.config.js");
 gulp.task("webpack", function () {
-  return webpack(webpackConfig)
+  return gulp.src("src/scripts/main.tsx")
+    .pipe(plumber())
+    .pipe(webpack(webpackConfig))
     .pipe(gulp.dest("wwwroot/scripts"))
     .pipe(livereload());
 });
 
 gulp.task("sass", function () {
   return gulp.src(["src/styles/**/*.scss"])
+    .pipe(plumber())
     .pipe(sass())
     .pipe(autoprefixer({
       browsers: ["last 2 versions"],
@@ -49,7 +47,7 @@ gulp.task("sass", function () {
 });
 
 gulp.task("watch", function () {
-  gulp.watch(["src/**/*.html", "content/**/*"], ["static-assets"]);
+  gulp.watch(["src/**/*.html"], ["html"]);
   gulp.watch(["src/scripts/**/*.ts", "src/scripts/**/*.tsx"], ["webpack"]);
   gulp.watch(["src/styles/**/*.scss"], ["sass"]);
 });
