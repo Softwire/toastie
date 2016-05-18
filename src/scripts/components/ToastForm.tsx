@@ -1,4 +1,4 @@
-/// <reference path="../../typings/index.d.ts" />
+/// <reference path="../main.d.ts" />
 
 import * as React from "react";
 
@@ -62,6 +62,6 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
         disabled={ !this.canSend() }>
         <span className="icon-send"></span> <span>Send</span>
       </button>
-    </div>
+    </div>;
   }
 }
