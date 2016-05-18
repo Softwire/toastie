@@ -1,4 +1,5 @@
 @import "variables";
+@import "logo";
 
 #sidebar {
   background-color: $toastyYellow;
@@ -7,7 +8,7 @@
   min-width: 320px;
   padding: 10px;
 
-  img#logo {
+  #logo {
     width: 60%;
   }
 }
