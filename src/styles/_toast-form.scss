@@ -1,8 +1,8 @@
 #toast-form {
+  color: $toastyBlue;
   #message-box {
     width: 100%;
     position: relative;
-    color: $toastyBlue;
     textarea {
       width: 100%;
       min-height: 140px;
@@ -10,6 +10,7 @@
       padding: 10px;
       resize: none;
       border: none;
+      outline-color: $toastyBlueHighlight;
       font-size: medium;
       font-family: inherit;
       color: inherit;
@@ -30,6 +31,35 @@
       font-size: xx-small;
       &.negative {
         color: red;
+      }
+    }
+  }
+  #send {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 5px;
+    float: right;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: medium;
+    color: $toastyBlueHighlight;
+    span {
+      vertical-align: middle;
+    }
+    span.icon-send {
+      font-size: xx-large;
+    }
+    &:disabled {
+      color: $toastyYellowHighlight;
+    }
+    &:not(:disabled) {
+      &:hover {
+        color: $toastyBlue;
+      }
+      &:active {
+        background-color: transparentize($toastyYellowHighlight, 0.8);
       }
     }
   }

@@ -19,7 +19,13 @@ gulp.task("content", function () {
     .pipe(livereload());
 });
 
-gulp.task("static-assets", ["html"], function() {
+gulp.task("fonts", function () {
+  return gulp.src(["src/fonts/**/*"])
+    .pipe(gulp.dest("wwwroot/fonts"))
+    .pipe(livereload());
+});
+
+gulp.task("static-assets", ["html", "fonts"], function() {
   return gulp.src("src/favicon.ico")
     .pipe(gulp.dest("wwwroot"));
 });
