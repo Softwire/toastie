@@ -2,6 +2,12 @@
 
 #sidebar {
   background-color: $toastyYellow;
+  box-sizing: border-box;
   height: 100%;
   min-width: 320px;
+  padding: 10px;
+
+  img#logo {
+    width: 60%;
+  }
 }
