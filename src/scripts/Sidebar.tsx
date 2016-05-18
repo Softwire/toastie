@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
-export class Hello extends React.Component<{}, {}> {
+export class Sidebar extends React.Component<{}, {}> {
   render() {
-    return <h1>Hello, world!</h1>
+    return <div id="sidebar"></div>
   }
 }

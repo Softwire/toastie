@@ -1,0 +1,9 @@
+@import "variables";
+
+#toast-list {
+  background-color: $toastyBlue;
+  height: 100%;
+  flex: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

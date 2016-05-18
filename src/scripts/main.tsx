@@ -2,6 +2,6 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Hello } from "./Hello.tsx";
+import { ToastyApp } from "./ToastyApp";
 
-ReactDOM.render(<Hello />, document.getElementById("content"));
+ReactDOM.render(<ToastyApp />, document.getElementById("content"));
