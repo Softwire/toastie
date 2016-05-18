@@ -1,0 +1,20 @@
+.toast-card {
+  width: 360px;
+  height: 160px;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 8px;
+  background-color: $toastyBlueHighlight;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  .message {
+    flex: auto;
+    word-wrap: break-word;
+  }
+  .timestamp {
+    font-size: small;
+    width: 100%;
+    text-align: right;
+  }
+}
