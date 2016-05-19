@@ -26,7 +26,7 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
 
   private handleMessageChange(e: React.FormEvent) {
     var textarea = e.target as HTMLTextAreaElement;
-    this.setState((s, p) => {
+    this.setState(s => {
       s.message = textarea.value;
       return s;
     });
@@ -45,7 +45,7 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
       return;
     }
     ToastClient.sendToast(this.state.message);
-    this.setState((s, p) => {
+    this.setState(s => {
       s.message = "";
       return s;
     });

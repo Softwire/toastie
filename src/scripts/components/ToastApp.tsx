@@ -8,7 +8,7 @@ export class ToastApp extends React.Component<{}, {}> {
   private toastList: ToastList;
 
   componentDidMount() {
-    window.addEventListener("wheel", (e: WheelEvent) => {
+    window.addEventListener("wheel", e => {
       this.toastList.scroll(e.deltaY);
       e.preventDefault();
     });
