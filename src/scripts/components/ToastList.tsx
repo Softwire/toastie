@@ -14,7 +14,11 @@ export class ToastList extends React.Component<{}, ToastListState> {
     super();
     this.state = {
       toasts: []
-    }
+    };
+  }
+
+  private get toastCards() {
+    return this.state.toasts.map((t, i) => <ToastCard key={ i } toast={ t } />);
   }
 
   componentDidMount() {
@@ -26,14 +30,10 @@ export class ToastList extends React.Component<{}, ToastListState> {
     });
   }
 
-  toastCards() {
-    return this.state.toasts.map((t, i) => <ToastCard key={ i } toast={ t } />);
-  }
-
   render() {
     return <div id="toast-list">
       <div>
-        { this.toastCards() }
+        { this.toastCards }
       </div>
     </div>;
   }

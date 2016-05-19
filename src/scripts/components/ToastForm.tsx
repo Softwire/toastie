@@ -8,14 +8,23 @@ interface ToastFormState {
 }
 
 export class ToastForm extends React.Component<{}, ToastFormState> {
-  static characterLimit = 140;
+  static CHARACTER_LIMIT = 140;
 
   constructor() {
     super();
     this.state = { message: "" };
   }
 
-  handleMessageChange(e: React.FormEvent) {
+  private get canSend() {
+    var remaining = this.charactersRemaining;
+    return 0 <= remaining && remaining < ToastForm.CHARACTER_LIMIT;
+  }
+
+  private get charactersRemaining() {
+    return ToastForm.CHARACTER_LIMIT - this.state.message.length;
+  }
+
+  private handleMessageChange(e: React.FormEvent) {
     var textarea = e.target as HTMLTextAreaElement;
     this.setState((s, p) => {
       s.message = textarea.value;
@@ -23,7 +32,7 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
     });
   }
 
-  handleMessageKeyDown(e: React.KeyboardEvent) {
+  private handleMessageKeyDown(e: React.KeyboardEvent) {
     // Send on Enter.
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -31,8 +40,8 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
     }
   }
 
-  handleSend() {
-    if (!this.canSend()) {
+  private handleSend() {
+    if (!this.canSend) {
       return;
     }
     ToastClient.sendToast(this.state.message);
@@ -42,26 +51,17 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
     });
   }
 
-  canSend() {
-    var remaining = this.charactersRemaining();
-    return 0 <= remaining && remaining < ToastForm.characterLimit;
-  }
-
-  charactersRemaining() {
-    return ToastForm.characterLimit - this.state.message.length;
-  }
-
   render() {
     return <div id="toast-form">
       <div id="message-box">
         <textarea  onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }
           value={ this.state.message }></textarea>
-        <span id="characters-remaining" className={ this.charactersRemaining() < 0 ? "negative" : "" }>
-          {this.charactersRemaining() }
+        <span id="characters-remaining" className={ this.charactersRemaining < 0 ? "negative" : "" }>
+          { this.charactersRemaining }
         </span>
       </div>
       <button id="send" onClick={ e => this.handleSend() }
-        disabled={ !this.canSend() }>
+        disabled={ !this.canSend }>
         <span className="icon-send"></span> <span>Send</span>
       </button>
     </div>;

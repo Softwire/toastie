@@ -3,7 +3,6 @@
 import * as React from "react";
 
 export class Logo extends React.Component<{}, {}> {
-
   render() {
     return <div id="logo">
       <svg version="1.1" x="0px" y="0px" width="150px" height="50px" viewBox="0 0 150 50" enable-background="new 0 0 150 50">
