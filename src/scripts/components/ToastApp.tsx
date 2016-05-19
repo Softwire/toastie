@@ -4,7 +4,7 @@ import * as React from "react";
 import { Sidebar } from "./Sidebar"
 import { ToastList } from "./ToastList"
 
-export class ToastyApp extends React.Component<{}, {}> {
+export class ToastApp extends React.Component<{}, {}> {
   render() {
     return <div id="toasty-app">
       <ToastList /><Sidebar />

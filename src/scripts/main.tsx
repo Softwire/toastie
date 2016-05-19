@@ -2,6 +2,6 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ToastyApp } from "./components/ToastyApp";
+import { ToastApp } from "./components/ToastApp";
 
-ReactDOM.render(<ToastyApp />, document.getElementById("content"));
+ReactDOM.render(<ToastApp />, document.getElementById("content"));
