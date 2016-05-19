@@ -1,8 +1,8 @@
 /// <reference path="../main.d.ts" />
 
 import * as React from "react";
-import { Sidebar } from "./Sidebar"
-import { ToastList } from "./ToastList"
+import { Sidebar } from "./Sidebar";
+import { ToastList } from "./ToastList";
 
 export class ToastApp extends React.Component<{}, {}> {
   private toastList: ToastList;

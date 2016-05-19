@@ -1,7 +1,7 @@
 /// <reference path="../main.d.ts" />
 
 import * as React from "react";
-import { ToastClient } from "../ToastClient"
+import { ToastClient } from "../ToastClient";
 
 interface ToastFormState {
   message: string;
