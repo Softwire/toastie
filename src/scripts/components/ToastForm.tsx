@@ -54,16 +54,18 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
   render() {
     return <div id="toast-form">
       <div id="message-box">
-        <textarea  onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }
+        <textarea className="toast-input" onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }
           value={ this.state.message }></textarea>
         <span id="characters-remaining" className={ this.charactersRemaining < 0 ? "negative" : "" }>
           { this.charactersRemaining }
         </span>
       </div>
-      <button id="send" onClick={ e => this.handleSend() }
-        disabled={ !this.canSend }>
-        <span className="icon-send"></span> <span>Send</span>
-      </button>
+      <div id="send">
+        <button className="toast-btn" onClick={ e => this.handleSend() }
+          disabled={ !this.canSend }>
+          <span className="icon-send"></span> <span>Send</span>
+        </button>
+      </div>
     </div>;
   }
 }

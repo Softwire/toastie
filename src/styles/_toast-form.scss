@@ -4,21 +4,7 @@
     width: 100%;
     position: relative;
     textarea {
-      width: 100%;
       min-height: 140px;
-      box-sizing: border-box;
-      padding: 10px;
-      resize: none;
-      border: none;
-      outline-color: $toastBlueHighlight;
-      font-size: medium;
-      font-family: inherit;
-      color: inherit;
-      background-color: rgba(255, 255, 255, 0.3);
-      overflow: hidden;
-      &:focus {
-        background-color: rgba(255, 255, 255, 0.6);
-      }
     }
     #characters-remaining {
       width: 100%;
@@ -35,32 +21,7 @@
     }
   }
   #send {
-    height: 40px;
-    line-height: 40px;
-    margin-top: 5px;
-    float: right;
-    background: none;
-    border: none;
-    outline: none;
-    font-weight: bold;
-    font-size: medium;
-    color: $toastBlueHighlight;
-    span {
-      vertical-align: middle;
-    }
-    span.icon-send {
-      font-size: xx-large;
-    }
-    &:disabled {
-      color: $toastYellowHighlight;
-    }
-    &:not(:disabled) {
-      &:hover {
-        color: $toastBlue;
-      }
-      &:active {
-        background-color: transparentize($toastYellowHighlight, 0.8);
-      }
-    }
+    display: flex;
+    justify-content: flex-end;
   }
 }

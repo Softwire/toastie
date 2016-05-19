@@ -4,7 +4,7 @@ import * as React from "react";
 
 export class Logo extends React.Component<{}, {}> {
   render() {
-    return <div id="logo">
+    return <div className="logo">
       <svg version="1.1" x="0px" y="0px" width="150px" height="50px" viewBox="0 0 150 50" enable-background="new 0 0 150 50">
       <g>
         <polygon points="32,20 22,20 22,10 12,10 12,20 2,20 2,30 12,30 12,40 22,40 22,30 32,30 	"/>

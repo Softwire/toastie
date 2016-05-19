@@ -1,0 +1,28 @@
+#login-modal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+  .logo {
+    margin: 0 auto 20px auto;
+    width: 30%;
+  }
+  #login-form {
+    color: $toastBlue;
+    padding: 20px;
+    margin: 15vh auto;
+    width: 30vw;
+    background-color: $toastYellow;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    #login {
+      display: flex;
+      justify-content: flex-end;
+    }
+    #validation {
+      padding: 5px;
+      font-size: small;
+      color: red;
+    }
+  }
+}
