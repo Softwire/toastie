@@ -5,9 +5,18 @@ import { Sidebar } from "./Sidebar"
 import { ToastList } from "./ToastList"
 
 export class ToastApp extends React.Component<{}, {}> {
+  private toastList: ToastList;
+
+  componentDidMount() {
+    window.addEventListener("wheel", (e: WheelEvent) => {
+      this.toastList.scroll(e.deltaY);
+      e.preventDefault();
+    });
+  }
+
   render() {
     return <div id="toasty-app">
-      <ToastList /><Sidebar />
+      <ToastList ref={ ref => this.toastList = ref } /><Sidebar />
     </div>;
   }
 }

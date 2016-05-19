@@ -10,6 +10,8 @@ interface ToastListState {
 }
 
 export class ToastList extends React.Component<{}, ToastListState> {
+  private list: HTMLDivElement;
+
   constructor() {
     super();
     this.state = {
@@ -19,6 +21,10 @@ export class ToastList extends React.Component<{}, ToastListState> {
 
   private get toastCards() {
     return this.state.toasts.map((t, i) => <ToastCard key={ i } toast={ t } />);
+  }
+
+  scroll(delta: number) {
+    this.list.scrollLeft += delta;
   }
 
   componentDidMount() {
@@ -31,7 +37,7 @@ export class ToastList extends React.Component<{}, ToastListState> {
   }
 
   render() {
-    return <div id="toast-list">
+    return <div id="toast-list" ref={ ref => this.list = ref }>
       <div>
         { this.toastCards }
       </div>
