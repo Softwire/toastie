@@ -10,19 +10,19 @@ var gulp = require("gulp"),
 
 gulp.task("html", function () {
   return gulp.src(["src/**/*.html"])
-    .pipe(gulp.dest("wwwroot"))
+    .pipe(gulp.dest("public"))
     .pipe(livereload());
 });
 
 gulp.task("fonts", function () {
   return gulp.src(["src/fonts/**/*"])
-    .pipe(gulp.dest("wwwroot/fonts"))
+    .pipe(gulp.dest("public/fonts"))
     .pipe(livereload());
 });
 
 gulp.task("static-assets", ["html", "fonts"], function() {
   return gulp.src("src/favicon.ico")
-    .pipe(gulp.dest("wwwroot"));
+    .pipe(gulp.dest("public"));
 });
 
 var webpackConfig = require("./webpack.config.js");
@@ -30,7 +30,7 @@ gulp.task("webpack", function () {
   return gulp.src("src/scripts/main.tsx")
     .pipe(plumber())
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest("wwwroot/scripts"))
+    .pipe(gulp.dest("public/scripts"))
     .pipe(livereload());
 });
 
@@ -42,7 +42,7 @@ gulp.task("sass", function () {
       browsers: ["last 2 versions"],
       cascade: false
     }))
-    .pipe(gulp.dest("wwwroot/styles"))
+    .pipe(gulp.dest("public/styles"))
     .pipe(livereload());
 });
 
@@ -53,7 +53,7 @@ gulp.task("watch", function () {
 });
 
 gulp.task("clean", function () {
-  return del(["wwwroot"]);
+  return del(["public"]);
 });
 
 gulp.task("build", ["static-assets", "webpack", "sass"]);

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "toastie-io",
+    "toastie-io": "toastie-io"
+  }
+}
