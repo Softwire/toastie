@@ -15,7 +15,7 @@ export class ToastApp extends React.Component<{}, {}> {
   }
 
   render() {
-    return <div id="toasty-app">
+    return <div id="toast-app">
       <ToastList ref={ ref => this.toastList = ref } /><Sidebar />
     </div>;
   }
