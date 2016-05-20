@@ -18,7 +18,7 @@ export class Sidebar extends React.Component<SidebarProps, {}> {
       <Logo/>
       { this.props.username && <UserPanel username={ this.props.username } onLogout={ this.props.onLogout }/> }
       <hr/>
-      <ToastForm toastClient={ this.props.toastClient }/>
+      <ToastForm toastClient={ this.props.toastClient } loggedIn={ this.props.username !== null }/>
       <hr/>
     </div>;
   }

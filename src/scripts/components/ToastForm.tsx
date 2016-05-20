@@ -5,6 +5,7 @@ import { ToastClient } from "../ToastClient";
 
 interface ToastFormProps {
   toastClient: ToastClient;
+  loggedIn: boolean;
 }
 
 interface ToastFormState {
@@ -22,7 +23,8 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
 
   private get canSend() {
     var remaining = this.charactersRemaining;
-    return this.state.to.length > 0
+    return this.props.loggedIn
+      && this.state.to.length > 0
       && (0 <= remaining && remaining < ToastForm.CHARACTER_LIMIT);
   }
 
