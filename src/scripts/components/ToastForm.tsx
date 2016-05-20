@@ -67,7 +67,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   }
 
   render() {
-    return <div id="toast-form">
+    return <form id="toast-form">
       <div id="to-box">
         <span>TO</span>
         <input type="text" className="toast-input" onChange={ e => this.handleToChange(e) } value={ this.state.to } />
@@ -85,6 +85,6 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
           <span className="icon-send"></span> <span>Send</span>
         </button>
       </div>
-    </div>;
+    </form>;
   }
 }
