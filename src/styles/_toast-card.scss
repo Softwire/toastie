@@ -1,22 +1,26 @@
 @import "hashtag-carousel";
 
+@mixin toast-card($background-color, $text-color, $icon-color) {
+
+}
+
 .toast-card {
   width: 360px;
   height: 160px;
   box-sizing: border-box;
   margin: 10px;
   padding: 5px;
-  background-color: $toastBlueHighlight;
+  background-color: highlight($toast-blue);
   color: white;
   display: flex;
   flex-direction: column;
   .header {
-    border-bottom: solid 1px transparentize($toastBlue, 0.6);
+    border-bottom: solid 1px transparentize($toast-blue, 0.6);
     padding: 0 4px 4px 4px;
     margin-bottom: 4px;
     display: flex;
     .toasted {
-      color: $toastYellow;
+      color: $toast-yellow;
       height: 0;
       line-height: 0;
       display: flex;
@@ -32,8 +36,8 @@
     display: flex;
     flex: auto;
     .toast-image {
-      background-color: darken($toastBlueHighlight, 5);
-      color: $toastBlueHighlight;
+      background-color: darken(highlight($toast-blue), 5);
+      color: highlight($toast-blue);
       flex: auto;
       font-size: 50px;
       margin: 5px 10px 5px 5px;

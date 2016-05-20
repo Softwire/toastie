@@ -2,7 +2,7 @@
   #to-box {
     span {
       font-family: Toast;
-      color: $toastYellowHighlight;
+      color: highlight($toast-yellow);
     }
     display: flex;
     align-items: center;

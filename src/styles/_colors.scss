@@ -1,0 +1,10 @@
+$toast-blue: #465b69;
+$toast-yellow: #ffc80b;
+
+@function highlight($color) {
+  @if $color == $toast-blue {
+    @return #6f8fa6;
+  } @if $color == $toast-yellow {
+    @return #ffab00;
+  }
+}
