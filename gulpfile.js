@@ -1,12 +1,12 @@
-var gulp = require("gulp"),
-  autoprefixer = require("gulp-autoprefixer");
-  del = require("del"),
-  livereload = require("gulp-livereload"),
-  nodemon = require("gulp-nodemon"),
-  open = require("gulp-open"),
-  plumber = require("gulp-plumber"),
-  sass = require("gulp-sass"),
-  webpack = require("webpack-stream");
+var gulp = require("gulp")
+  , autoprefixer = require("gulp-autoprefixer")
+  , del = require("del")
+  , livereload = require("gulp-livereload")
+  , nodemon = require("gulp-nodemon")
+  , open = require("gulp-open")
+  , plumber = require("gulp-plumber")
+  , sass = require("gulp-sass")
+  , webpack = require("webpack-stream");
 
 gulp.task("html", function () {
   return gulp.src(["src/**/*.html"])
