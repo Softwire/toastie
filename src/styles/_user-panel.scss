@@ -1,12 +1,19 @@
 #user-panel {
-  padding: 16px;
+  padding: 10px;
   background-color: rgba(255, 255, 255, 0.3);
   font-size: larger;
   font-weight: bold;
-  > div {
-    display: inline-block;
-    &.user-picture {
-      margin-right: 10px;
-    }
+  display: flex;
+  align-items: center;
+  color: $toastBlue;
+  .user-picture {
+    margin-right: 10px;
+  }
+  .username {
+    flex: auto;
+  }
+  .logout button{
+    height: 30px;
+    line-height: 30px;
   }
 }

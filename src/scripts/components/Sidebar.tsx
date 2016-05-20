@@ -7,13 +7,14 @@ import { ToastForm } from "./ToastForm";
 
 interface SidebarProps {
   username: string;
+  onLogout: () => void;
 }
 
 export class Sidebar extends React.Component<SidebarProps, {}> {
   render() {
     return <div id="sidebar">
       <Logo/>
-      <UserPanel username={ this.props.username }/>
+      { this.props.username && <UserPanel username={ this.props.username } onLogout={ this.props.onLogout }/> }
       <hr/>
       <ToastForm/>
       <hr/>

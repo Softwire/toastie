@@ -27,6 +27,14 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
     localStorage.setItem(ToastApp.USERNAME_KEY, username);
   }
 
+  private handleLogout() {
+    this.setState(s => {
+      s.username = null;
+      return s;
+    });
+    localStorage.removeItem(ToastApp.USERNAME_KEY);
+  }
+
   componentDidMount() {
     window.addEventListener("wheel", e => {
       this.toastList.scroll(e.deltaY);
@@ -38,7 +46,7 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
     return <div id="toast-app">
       { this.state.username == null && <LoginModal onLogin={ u => this.handleLogin(u) } /> }
       <ToastList ref={ ref => this.toastList = ref } />
-      <Sidebar username={ this.state.username } />
+      <Sidebar username={ this.state.username } onLogout={ () => this.handleLogout() } />
     </div>;
   }
 }
