@@ -52,8 +52,8 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
       <div id="login-form">
         <Logo />
         <form onSubmit={ e => this.handleSubmit(e) }>
-          <input type="text" className="toast-input" placeholder="Username" value={ this.state.username }
-            onChange={ e => this.handleUsernameChange(e) } />
+          <input type="text" className="toast-input" placeholder="Username" autoFocus
+            value={ this.state.username } onChange={ e => this.handleUsernameChange(e) } />
           <div id="validation">
             <span hidden={ !this.usernameTooLong }>Username cannot be more than { LoginModal.MAX_USERNAME_LENGTH } characters.</span>
             <span hidden={ !this.usernameHasInvalidCharacters }>Username can only contain letters, numbers and underscores.</span>
