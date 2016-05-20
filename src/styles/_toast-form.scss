@@ -1,4 +1,17 @@
 #toast-form {
+  #to-box {
+    span {
+      font-family: Toast;
+      color: $toastYellowHighlight;
+    }
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    input {
+      margin-left: 10px;
+      flex: auto;
+    }
+  }
   #message-box {
     width: 100%;
     position: relative;

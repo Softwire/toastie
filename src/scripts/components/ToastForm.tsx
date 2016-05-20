@@ -4,6 +4,7 @@ import * as React from "react";
 import { ToastClient } from "../ToastClient";
 
 interface ToastFormState {
+  to: string;
   message: string;
 }
 
@@ -12,16 +13,25 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
 
   constructor() {
     super();
-    this.state = { message: "" };
+    this.state = { to: "", message: "" };
   }
 
   private get canSend() {
     var remaining = this.charactersRemaining;
-    return 0 <= remaining && remaining < ToastForm.CHARACTER_LIMIT;
+    return this.state.to.length > 0
+      && (0 <= remaining && remaining < ToastForm.CHARACTER_LIMIT);
   }
 
   private get charactersRemaining() {
     return ToastForm.CHARACTER_LIMIT - this.state.message.length;
+  }
+
+  private handleToChange(e: React.FormEvent) {
+    var input = e.target as HTMLInputElement;
+    this.setState(s => {
+      s.to = input.value;
+      return s;
+    });
   }
 
   private handleMessageChange(e: React.FormEvent) {
@@ -46,6 +56,7 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
     }
     ToastClient.sendToast(this.state.message);
     this.setState(s => {
+      s.to = "";
       s.message = "";
       return s;
     });
@@ -53,6 +64,10 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
 
   render() {
     return <div id="toast-form">
+      <div id="to-box">
+        <span>TO</span>
+        <input type="text" className="toast-input" onChange={ e => this.handleToChange(e) } value={ this.state.to } />
+      </div>
       <div id="message-box">
         <textarea className="toast-input" onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }
           value={ this.state.message }></textarea>
