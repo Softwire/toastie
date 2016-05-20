@@ -9,6 +9,7 @@
   min-width: 320px;
   padding: 10px;
   color: $toast-blue;
+  border-left: solid 1px highlight($toast-yellow);
   .logo {
     width: 60%;
   }
