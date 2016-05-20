@@ -5,11 +5,15 @@ import { ToastClient } from "../ToastClient";
 import { Toast } from "../models/Toast";
 import { ToastCard } from "./ToastCard";
 
+interface ToastListProps {
+  toastClient: ToastClient;
+}
+
 interface ToastListState {
   toasts: Toast[];
 }
 
-export class ToastList extends React.Component<{}, ToastListState> {
+export class ToastList extends React.Component<ToastListProps, ToastListState> {
   private list: HTMLDivElement;
 
   constructor() {
@@ -28,7 +32,7 @@ export class ToastList extends React.Component<{}, ToastListState> {
   }
 
   componentDidMount() {
-    ToastClient.onToastAdded(toast => {
+    this.props.toastClient.onToastAdded(toast => {
       this.setState(s => {
         s.toasts.unshift(toast);
         return s;

@@ -4,6 +4,7 @@ import * as React from "react";
 import { LoginModal } from "./LoginModal";
 import { Sidebar } from "./Sidebar";
 import { ToastList } from "./ToastList";
+import { ToastClient } from "../ToastClient";
 
 interface ToastAppState {
   username: string;
@@ -43,10 +44,11 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
   }
 
   render() {
+    var toastClient = new ToastClient(this.state.username);
     return <div id="toast-app">
       { this.state.username == null && <LoginModal onLogin={ u => this.handleLogin(u) } /> }
-      <ToastList ref={ ref => this.toastList = ref } />
-      <Sidebar username={ this.state.username } onLogout={ () => this.handleLogout() } />
+      <ToastList ref={ ref => this.toastList = ref } toastClient={ toastClient } />
+      <Sidebar toastClient={ toastClient } username={ this.state.username } onLogout={ () => this.handleLogout() } />
     </div>;
   }
 }

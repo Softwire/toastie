@@ -4,8 +4,10 @@ import * as React from "react";
 import { Logo } from "./Logo";
 import { UserPanel } from "./UserPanel";
 import { ToastForm } from "./ToastForm";
+import { ToastClient } from "../ToastClient";
 
 interface SidebarProps {
+  toastClient: ToastClient;
   username: string;
   onLogout: () => void;
 }
@@ -16,7 +18,7 @@ export class Sidebar extends React.Component<SidebarProps, {}> {
       <Logo/>
       { this.props.username && <UserPanel username={ this.props.username } onLogout={ this.props.onLogout }/> }
       <hr/>
-      <ToastForm/>
+      <ToastForm toastClient={ this.props.toastClient }/>
       <hr/>
     </div>;
   }

@@ -3,12 +3,16 @@
 import * as React from "react";
 import { ToastClient } from "../ToastClient";
 
+interface ToastFormProps {
+  toastClient: ToastClient;
+}
+
 interface ToastFormState {
   to: string;
   message: string;
 }
 
-export class ToastForm extends React.Component<{}, ToastFormState> {
+export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   static CHARACTER_LIMIT = 140;
 
   constructor() {
@@ -54,7 +58,7 @@ export class ToastForm extends React.Component<{}, ToastFormState> {
     if (!this.canSend) {
       return;
     }
-    ToastClient.sendToast(this.state.message);
+    this.props.toastClient.sendToast(this.state.message);
     this.setState(s => {
       s.to = "";
       s.message = "";
