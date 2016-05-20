@@ -8,6 +8,7 @@ import { ToastClient } from "../ToastClient";
 interface ToastCardProps {
   toast: Toast;
   toastClient: ToastClient;
+  username: string;
 }
 
 export class ToastCard extends React.Component<ToastCardProps, {}> {
@@ -17,14 +18,26 @@ export class ToastCard extends React.Component<ToastCardProps, {}> {
     return this.props.toast.message.match(ToastCard.HASHTAG_PATTERN) || [];
   }
 
+  private get toastees(): string[] {
+    return this.props.toast.to.split(",").map(r => r.trim());
+  }
+
+  private get userWasToasted(): boolean {
+    return this.toastees.indexOf(this.props.username) !== -1;
+  }
+
   render() {
-    return <div className="toast-card">
+    var classes = ["toast-card"];
+    if (this.userWasToasted) {
+      classes.push("toast-to-me");
+    }
+    return <div className={ classes.join(" ") }>
       <div className="header">
         <div>{ this.props.toast.from }</div>
         <div className="toasted">
           <span className="icon-toasted"></span>
         </div>
-        <div>{ this.props.toast.to }</div>
+        <div>{ this.toastees.join(", ") }</div>
       </div>
       <div className="toast-body">
         <div className="toast-image">

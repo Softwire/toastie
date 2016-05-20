@@ -47,7 +47,7 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
     var toastClient = new ToastClient(this.state.username);
     return <div id="toast-app">
       { this.state.username == null && <LoginModal onLogin={ u => this.handleLogin(u) } /> }
-      <ToastList ref={ ref => this.toastList = ref } toastClient={ toastClient } />
+      <ToastList ref={ ref => this.toastList = ref } toastClient={ toastClient } username={ this.state.username }/>
       <Sidebar toastClient={ toastClient } username={ this.state.username } onLogout={ () => this.handleLogout() } />
     </div>;
   }
