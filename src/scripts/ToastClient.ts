@@ -19,8 +19,10 @@ export class ToastClient {
     return ToastClient.firebase.child("toasts");
   }
 
-  sendToast(message: string) {
+  sendToast(to: string, message: string) {
     var toast: Toast = {
+      from: this.currentUser,
+      to: to,
       message: message,
       timestamp: Firebase.ServerValue.TIMESTAMP
     }

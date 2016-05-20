@@ -58,7 +58,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
     if (!this.canSend) {
       return;
     }
-    this.props.toastClient.sendToast(this.state.message);
+    this.props.toastClient.sendToast(this.state.to, this.state.message);
     this.setState(s => {
       s.to = "";
       s.message = "";
