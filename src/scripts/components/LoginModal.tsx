@@ -14,23 +14,31 @@ interface LoginModalState {
 export class LoginModal extends React.Component<LoginModalProps, LoginModalState> {
   static MAX_USERNAME_LENGTH = 30;
 
+
   constructor() {
     super();
     this.state = { username: "" };
   }
 
   private get usernameIsValid() {
-    return this.state.username
-      && !this.usernameTooLong
-      && !this.usernameHasInvalidCharacters;
+    return this.state.username && this.validations.every(v => v.isValid);
   }
 
-  private get usernameHasInvalidCharacters() {
-    return /[^\w]/.test(this.state.username);
-  }
-
-  private get usernameTooLong() {
-    return this.state.username.length > 30;
+  private get validations() {
+    return [
+      {
+        isValid: this.state.username.length <= 30,
+        message: `Username cannot be more than ${ LoginModal.MAX_USERNAME_LENGTH } characters.`
+      },
+      {
+        isValid: !/(?:^ |  | $)/.test(this.state.username),
+        message: "Username cannot start or end with a space and cannot have consecutive spaces."
+      },
+      {
+        isValid: !/[,;\t\r\n\f]/.test(this.state.username),
+        message: "Username cannot contain commas, semicolons, tabs or newlines."
+      }
+    ]
   }
 
   private handleSubmit(e: React.FormEvent) {
@@ -55,8 +63,7 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
           <input type="text" className="toast-input" placeholder="Username" autoFocus
             value={ this.state.username } onChange={ e => this.handleUsernameChange(e) } />
           <div id="validation">
-            <div hidden={ !this.usernameTooLong }>Username cannot be more than { LoginModal.MAX_USERNAME_LENGTH } characters.</div>
-            <div hidden={ !this.usernameHasInvalidCharacters }>Username can only contain letters, numbers and underscores.</div>
+            { this.validations.filter(v => !v.isValid).map(v => <div>{ v.message }</div>) }
           </div>
           <div id="login">
             <button className="toast-btn" type="submit" disabled={ !this.usernameIsValid }>
