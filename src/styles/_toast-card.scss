@@ -7,34 +7,56 @@
   background-color: $toastBlueHighlight;
   color: white;
   display: flex;
-  .toast-image {
-    background-color: darken($toastBlueHighlight, 5);
-    color: $toastBlueHighlight;
-    flex: auto;
-    font-size: 50px;
-    margin: 5px 10px 5px 5px;
-    text-align: center;
+  flex-direction: column;
+  .header {
+    border-bottom: solid 1px transparentize($toastBlue, 0.6);
+    padding: 0 4px 4px 4px;
+    margin-bottom: 4px;
     display: flex;
-    justify-content:center;
-    flex-direction: column;
+    .toasted {
+      color: $toastYellow;
+      height: 0;
+      line-height: 0;
+      display: flex;
+      align-items: flex-end;
+      font-size: 40px;
+    }
+    div:last-of-type {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .toast-body {
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 100%;
-    width: 240px;
-    min-width: 240px;
-    .message {
-      width: 100%;
-      max-height: 130px;
-      word-wrap: break-word;
-      overflow: hidden;
+    flex: auto;
+    .toast-image {
+      background-color: darken($toastBlueHighlight, 5);
+      color: $toastBlueHighlight;
+      flex: auto;
+      font-size: 50px;
+      margin: 5px 10px 5px 5px;
+      text-align: center;
+      display: flex;
+      justify-content:center;
+      flex-direction: column;
     }
-    .timestamp {
-      font-size: small;
-      width: 100%;
-      text-align: right;
+    .message-body {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 240px;
+      min-width: 240px;
+      .message {
+        width: 100%;
+        max-height: 130px;
+        word-wrap: break-word;
+        overflow: hidden;
+      }
+      .timestamp {
+        font-size: small;
+        width: 100%;
+        text-align: right;
+      }
     }
   }
 }
