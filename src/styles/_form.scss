@@ -20,7 +20,7 @@
     &:hover {
       color: $toast-blue;
     }
-    &:active {
+    &:active, &:focus {
       background-color: transparentize(highlight($toast-yellow), 0.8);
     }
   }

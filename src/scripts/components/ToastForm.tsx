@@ -69,14 +69,16 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   }
 
   render() {
+    var tabIndex = this.props.loggedIn ? "" : "-1";
     return <form id="toast-form">
       <div id="to-box">
         <span>TO</span>
-        <input type="text" className="toast-input" onChange={ e => this.handleToChange(e) } value={ this.state.to } />
+        <input type="text" className="toast-input" tabIndex={ tabIndex } value={ this.state.to }
+          onChange={ e => this.handleToChange(e) }/>
       </div>
       <div id="message-box">
-        <textarea className="toast-input" onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }
-          value={ this.state.message }></textarea>
+        <textarea className="toast-input" tabIndex={ tabIndex } value={ this.state.message }
+          onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }></textarea>
         <span id="characters-remaining" className={ this.charactersRemaining < 0 ? "negative" : "" }>
           { this.charactersRemaining }
         </span>
