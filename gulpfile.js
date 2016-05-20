@@ -20,7 +20,7 @@ gulp.task("fonts", function () {
     .pipe(livereload());
 });
 
-gulp.task("static-assets", ["html", "fonts"], function() {
+gulp.task("static-assets", ["html", "fonts"], function () {
   return gulp.src("src/favicon.ico")
     .pipe(gulp.dest("public"));
 });
