@@ -2,13 +2,21 @@
 
 import * as React from "react";
 import { Logo } from "./Logo";
+import { UserPanel } from "./UserPanel";
 import { ToastForm } from "./ToastForm";
 
-export class Sidebar extends React.Component<{}, {}> {
+interface SidebarProps {
+  username: string;
+}
+
+export class Sidebar extends React.Component<SidebarProps, {}> {
   render() {
     return <div id="sidebar">
-      <Logo />
-      <ToastForm />
+      <Logo/>
+      <UserPanel username={ this.props.username }/>
+      <hr/>
+      <ToastForm/>
+      <hr/>
     </div>;
   }
 }

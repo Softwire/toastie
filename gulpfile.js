@@ -15,8 +15,10 @@ gulp.task("html", function () {
 });
 
 gulp.task("fonts", function () {
-  return gulp.src(["src/fonts/**/*"])
-    .pipe(gulp.dest("public/fonts"))
+  return gulp.src([
+    "src/fonts/**/*",
+    "node_modules/font-awesome/fonts/**/*"
+  ]).pipe(gulp.dest("public/fonts"))
     .pipe(livereload());
 });
 

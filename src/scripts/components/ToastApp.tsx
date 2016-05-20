@@ -37,7 +37,8 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
   render() {
     return <div id="toast-app">
       { this.state.username == null && <LoginModal onLogin={ u => this.handleLogin(u) } /> }
-      <ToastList ref={ ref => this.toastList = ref } /><Sidebar />
+      <ToastList ref={ ref => this.toastList = ref } />
+      <Sidebar username={ this.state.username } />
     </div>;
   }
 }
