@@ -15,6 +15,8 @@ interface ToastFormState {
 
 export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   static CHARACTER_LIMIT = 140;
+  private toBox: HTMLInputElement;
+  private messageBox: HTMLTextAreaElement;
 
   constructor() {
     super();
@@ -22,10 +24,16 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   }
 
   private get canSendToast() {
+    return this.props.loggedIn && this.validToField && this.validMessageField;
+  }
+
+  private get validToField() {
+    return this.state.to.trim().length > 0;
+  }
+
+  private get validMessageField() {
     var remaining = this.charactersRemaining;
-    return this.props.loggedIn
-      && this.state.to.length > 0
-      && (0 <= remaining && remaining < ToastForm.CHARACTER_LIMIT);
+    return 0 <= remaining && remaining < ToastForm.CHARACTER_LIMIT;
   }
 
   private get charactersRemaining() {
@@ -49,9 +57,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   }
 
   private handleSubmit(e: React.FormEvent) {
-    if (this.canSendToast) {
-      this.sendToast();
-    }
+    this.trySendToast();
     e.preventDefault();
     return false;
   }
@@ -59,13 +65,18 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   private handleMessageKeyDown(e: React.KeyboardEvent) {
     // Send on Enter.
     if (e.keyCode === 13) {
-      this.sendToast();
+      this.trySendToast();
       e.preventDefault();
     }
   }
 
-  private sendToast() {
+  private trySendToast() {
     if (!this.canSendToast) {
+      if (!this.validToField) {
+        this.toBox.focus();
+      } else if (!this.validMessageField) {
+        this.messageBox.focus();
+      }
       return;
     }
     this.props.toastClient.sendToast(this.state.to, this.state.message);
@@ -82,11 +93,13 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
       <div id="to-box">
         <span>TO</span>
         <input type="text" className="toast-input" tabIndex={ tabIndex } value={ this.state.to }
+          ref={ ref => this.toBox = ref }
           autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
           onChange={ e => this.handleToChange(e) }/>
       </div>
       <div id="message-box">
         <textarea className="toast-input" tabIndex={ tabIndex } value={ this.state.message }
+          ref={ ref => this.messageBox = ref }
           onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }></textarea>
         <span id="characters-remaining" className={ this.charactersRemaining < 0 ? "negative" : "" }>
           { this.charactersRemaining }
