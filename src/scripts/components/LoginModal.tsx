@@ -64,6 +64,7 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
         <Logo />
         <form action="login" onSubmit={ e => this.handleSubmit(e) }>
           <input type="text" className="toast-input" placeholder="Username" autoFocus
+            autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
             value={ this.state.username } onChange={ e => this.handleUsernameChange(e) } />
           <div id="validation">
             { this.validations.filter(v => !v.isValid).map(v => <div>{ v.message }</div>) }

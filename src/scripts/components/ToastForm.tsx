@@ -82,6 +82,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
       <div id="to-box">
         <span>TO</span>
         <input type="text" className="toast-input" tabIndex={ tabIndex } value={ this.state.to }
+          autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"
           onChange={ e => this.handleToChange(e) }/>
       </div>
       <div id="message-box">
