@@ -20,7 +20,7 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
     this.state = { username: "" };
   }
 
-  private get usernameIsValid() {
+  private get canLogin() {
     return this.state.username && this.validations.every(v => v.isValid);
   }
 
@@ -28,7 +28,7 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
     return [
       {
         isValid: this.state.username.length <= 30,
-        message: `Username cannot be more than ${ LoginModal.MAX_USERNAME_LENGTH } characters.`
+        message: `Username cannot be more than ${LoginModal.MAX_USERNAME_LENGTH} characters.`
       },
       {
         isValid: !/(?:^ |  | $)/.test(this.state.username),
@@ -42,8 +42,11 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
   }
 
   private handleSubmit(e: React.FormEvent) {
-    this.props.onLogin(this.state.username);
+    if (this.canLogin) {
+      this.props.onLogin(this.state.username);
+    }
     e.preventDefault();
+    return false;
   }
 
   private handleUsernameChange(e: React.FormEvent) {
@@ -59,14 +62,14 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
     return <div id="login-modal">
       <div id="login-form">
         <Logo />
-        <form onSubmit={ e => this.handleSubmit(e) }>
+        <form action="login" onSubmit={ e => this.handleSubmit(e) }>
           <input type="text" className="toast-input" placeholder="Username" autoFocus
             value={ this.state.username } onChange={ e => this.handleUsernameChange(e) } />
           <div id="validation">
             { this.validations.filter(v => !v.isValid).map(v => <div>{ v.message }</div>) }
           </div>
           <div id="login">
-            <button className="toast-btn" type="submit" disabled={ !this.usernameIsValid }>
+            <button className="toast-btn" type="submit" disabled={ !this.canLogin }>
               <span className="icon-toast"></span> Login
             </button>
           </div>

@@ -21,7 +21,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
     this.state = { to: "", message: "" };
   }
 
-  private get canSend() {
+  private get canSendToast() {
     var remaining = this.charactersRemaining;
     return this.props.loggedIn
       && this.state.to.length > 0
@@ -48,16 +48,24 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
     });
   }
 
+  private handleSubmit(e: React.FormEvent) {
+    if (this.canSendToast) {
+      this.sendToast();
+    }
+    e.preventDefault();
+    return false;
+  }
+
   private handleMessageKeyDown(e: React.KeyboardEvent) {
     // Send on Enter.
     if (e.keyCode === 13) {
+      this.sendToast();
       e.preventDefault();
-      this.handleSend();
     }
   }
 
-  private handleSend() {
-    if (!this.canSend) {
+  private sendToast() {
+    if (!this.canSendToast) {
       return;
     }
     this.props.toastClient.sendToast(this.state.to, this.state.message);
@@ -70,7 +78,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
 
   render() {
     var tabIndex = this.props.loggedIn ? "" : "-1";
-    return <form id="toast-form">
+    return <form id="toast-form" action="send-toast" onSubmit={ e => this.handleSubmit(e) }>
       <div id="to-box">
         <span>TO</span>
         <input type="text" className="toast-input" tabIndex={ tabIndex } value={ this.state.to }
@@ -84,8 +92,7 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
         </span>
       </div>
       <div id="send">
-        <button className="toast-btn" onClick={ e => this.handleSend() }
-          disabled={ !this.canSend }>
+        <button className="toast-btn" type="submit" disabled={ !this.canSendToast }>
           <span className="icon-send"></span> <span>Send</span>
         </button>
       </div>
