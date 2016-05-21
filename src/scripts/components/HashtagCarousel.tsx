@@ -32,12 +32,12 @@ export class HashtagCarousel extends React.Component<HashtagCarouselProps, Hasht
         this.setState(s => {
           s.imageMap[hashtag] = url;
           return s;
-        })
-      });
+        });
+      }).catch(() => {}); // Ignore missing hashtags.
     });
   }
 
-  componentWillReceiveNewProps(props: HashtagCarouselProps) {
+  componentWillReceiveProps(props: HashtagCarouselProps) {
     this.fetchImages(props.hashtags);
   }
 

@@ -32,6 +32,7 @@ export class ToastClient {
   }
 
   getHashtagImageUrl(hashtag: string): Promise<string> {
+    hashtag = hashtag.toLowerCase();
     var promise = ToastClient.HASHTAG_URL_CACHE[hashtag];
     if (promise !== undefined) {
       return promise;
