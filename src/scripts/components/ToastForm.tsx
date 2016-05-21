@@ -80,6 +80,8 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
       return;
     }
     this.props.toastClient.sendToast(this.state.to, this.state.message);
+    this.toBox.blur();
+    this.messageBox.blur();
     this.setState(s => {
       s.to = "";
       s.message = "";
