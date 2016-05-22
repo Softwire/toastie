@@ -37,7 +37,7 @@ export class ToastCard extends React.Component<ToastCardProps, {}> {
       </div>
       <div className="toast-body">
         <div className="toast-image">
-          <HashtagCarousel hashtags={ this.hashtags } toastClient={ this.props.toastClient }/>
+          <HashtagCarousel hashtags={ this.hashtags } toastClient={ this.props.toastClient } />
         </div>
         <div className="message-body">
           <div className="message">
