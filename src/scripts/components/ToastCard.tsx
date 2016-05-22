@@ -42,7 +42,11 @@ export class ToastCard extends React.Component<ToastCardProps, {}> {
             { this.props.toast.message }
           </div>
           <div className="timestamp">
-            { new Date(this.props.toast.timestamp).toLocaleString() }
+            {
+              // BUG: Timestamp is one hour off.
+              new Date(this.props.toast.timestamp - 60*60*1000).toLocaleString()
+              // new Date(this.props.toast.timestamp).toLocaleString()
+            }
           </div>
         </div>
       </div>
