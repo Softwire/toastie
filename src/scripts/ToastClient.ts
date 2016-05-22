@@ -32,14 +32,17 @@ export class ToastClient {
   }
 
   getHashtagImageUrl(hashtag: string): Promise<string> {
+    // BUG: First hashtag image is returned for all hashtags.
     hashtag = hashtag.toLowerCase();
-    var promise = ToastClient.HASHTAG_URL_CACHE[hashtag];
+    var promise = ToastClient.HASHTAG_URL_CACHE["first"];
+    // var promise = ToastClient.HASHTAG_URL_CACHE[hashtag];
     if (promise !== undefined) {
       return promise;
     }
     var fileName = hashtag.substring(1).toLowerCase();
     promise = this.hashtagsRef.child(fileName).getDownloadURL();
-    ToastClient.HASHTAG_URL_CACHE[hashtag] = promise;
+    ToastClient.HASHTAG_URL_CACHE["first"] = promise;
+    // ToastClient.HASHTAG_URL_CACHE[hashtag] = promise;
     return promise;
   }
 
