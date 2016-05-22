@@ -20,7 +20,8 @@
 .toast-card {
   @include toast-card(highlight($toast-blue), $toast-blue, white, $toast-yellow);
   &.toast-to-me {
-    @include toast-card($toast-yellow, highlight($toast-yellow), $toast-blue, highlight($toast-blue));
+    // BUG: Toasts to me are not highlighted.
+    // @include toast-card($toast-yellow, highlight($toast-yellow), $toast-blue, highlight($toast-blue));
   }
   &:not(:focus) {
     height: 160px;
