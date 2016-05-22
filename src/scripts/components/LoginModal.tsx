@@ -21,7 +21,9 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
   }
 
   private get canLogin() {
-    return this.state.username && this.validations.every(v => v.isValid);
+    // BUG: Can login with empty username.
+    return this.validations.every(v => v.isValid);
+    // return this.state.username && this.validations.every(v => v.isValid);
   }
 
   private get validations() {
