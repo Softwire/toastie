@@ -39,7 +39,11 @@ export class ToastCard extends React.Component<ToastCardProps, {}> {
         <HashtagCarousel hashtags={ this.hashtags } toastClient={ this.props.toastClient } />
         <div className="message-body">
           <div className="message">
-            { this.props.toast.message }
+            {
+              // BUG: Cannot render non-ascii characters.
+              this.props.toast.message.replace(/[^\u0000-\u007f]/g, "�")
+              // this.props.toast.message
+            }
           </div>
           <div className="timestamp">
             {
