@@ -29,11 +29,13 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
   }
 
   private handleLogout() {
-    this.setState(s => {
-      s.username = null;
-      return s;
-    });
-    localStorage.removeItem(ToastApp.USERNAME_KEY);
+    // BUG: Logout does not work.
+    return;
+    // this.setState(s => {
+    //   s.username = null;
+    //   return s;
+    // });
+    // localStorage.removeItem(ToastApp.USERNAME_KEY);
   }
 
   componentDidMount() {
