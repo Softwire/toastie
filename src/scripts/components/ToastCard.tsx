@@ -27,11 +27,7 @@ export class ToastCard extends React.Component<ToastCardProps, {}> {
   }
 
   render() {
-    var classes = ["toast-card"];
-    if (this.userWasToasted) {
-      classes.push("toast-to-me");
-    }
-    return <div className={ classes.join(" ") }>
+    return <div className={ `toast-card${this.userWasToasted ? " toast-to-me" : ""}` }>
       <div className="header">
         <div>{ this.props.toast.from }</div>
         <div className="toasted">

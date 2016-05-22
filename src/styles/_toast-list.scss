@@ -7,10 +7,7 @@
   padding: 10px;
   overflow-x: scroll;
   flex: auto;
-  > div {
-    display: flex;
-    align-content: flex-start;
-    flex-flow: column wrap;
-    height: 100%;
-  }
+  display: flex;
+  align-content: flex-start;
+  flex-flow: column wrap;
 }

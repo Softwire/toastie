@@ -25,9 +25,11 @@ export class ToastList extends React.Component<ToastListProps, ToastListState> {
   }
 
   private get toastCards() {
-    return this.state.toasts.map((t, i) =>
-      <ToastCard key={ i } toast={ t } toastClient={ this.props.toastClient } username={ this.props.username } />
-    );
+    return this.state.toasts.map((t, i) => {
+      return <div>
+        <ToastCard key={ i } toast={ t } toastClient={ this.props.toastClient } username={ this.props.username } />
+      </div>
+    });
   }
 
   scroll(delta: number) {
@@ -45,9 +47,7 @@ export class ToastList extends React.Component<ToastListProps, ToastListState> {
 
   render() {
     return <div id="toast-list" ref={ ref => this.list = ref }>
-      <div>
-        { this.toastCards }
-      </div>
+      { this.toastCards }
     </div>;
   }
 }
