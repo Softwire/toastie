@@ -50,6 +50,12 @@ export class ToastClient {
       message: message,
       timestamp: firebase.database.ServerValue.TIMESTAMP
     };
+
+    // BUG: Cannot toast self.
+    if (toast.from === toast.to) {
+      alert("ERROR! Toast could not be sent.");
+      return;
+    }
     this.toastsRef.push(toast);
   }
 
