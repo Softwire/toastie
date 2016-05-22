@@ -24,7 +24,10 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
   }
 
   private get canSendToast() {
-    return this.props.loggedIn && this.validToField && this.validMessageField;
+    // BUG: Can send empty toast.
+    return true;
+
+    // return this.props.loggedIn && this.validToField && this.validMessageField;
   }
 
   private get validToField() {
