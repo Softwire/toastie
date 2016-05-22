@@ -39,8 +39,8 @@ export class ToastList extends React.Component<ToastListProps, ToastListState> {
   componentDidMount() {
     this.props.toastClient.onToastAdded(toast => {
       this.setState(s => {
-        // BUG: Add new toasts to end.
-        s.toasts.push(toast);
+        // BUG: Only one toast is shown.
+        s.toasts = [toast];
         // s.toasts.unshift(toast);
         return s;
       });
