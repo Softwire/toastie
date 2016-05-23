@@ -1,5 +1,6 @@
 var gulp = require("gulp")
   , autoprefixer = require("gulp-autoprefixer")
+  , Bust = require("gulp-bust")
   , del = require("del")
   , livereload = require("gulp-livereload")
   , nodemon = require("gulp-nodemon")
@@ -7,6 +8,8 @@ var gulp = require("gulp")
   , plumber = require("gulp-plumber")
   , sass = require("gulp-sass")
   , webpack = require("webpack-stream");
+
+var bust = new Bust();
 
 gulp.task("html", function () {
   return gulp.src(["src/**/*.html"])
@@ -32,6 +35,7 @@ gulp.task("webpack", function () {
   return gulp.src("src/scripts/main.tsx")
     .pipe(plumber())
     .pipe(webpack(webpackConfig))
+    .pipe(bust.resources())
     .pipe(gulp.dest("public/scripts"))
     .pipe(livereload());
 });
@@ -44,6 +48,7 @@ gulp.task("sass", function () {
       browsers: ["last 2 versions"],
       cascade: false
     }))
+    .pipe(bust.resources())
     .pipe(gulp.dest("public/styles"))
     .pipe(livereload());
 });
@@ -58,7 +63,11 @@ gulp.task("clean", function () {
   return del(["public"]);
 });
 
-gulp.task("build", ["static-assets", "webpack", "sass"]);
+gulp.task("build", ["static-assets", "webpack", "sass"], function () {
+  return gulp.src("public/**/*.html")
+    .pipe(bust.references())
+    .pipe(gulp.dest("public"));
+});
 
 gulp.task("develop", ["build", "watch"], function () {
   livereload.listen();
