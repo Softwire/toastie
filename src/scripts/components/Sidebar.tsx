@@ -14,11 +14,12 @@ interface SidebarProps {
 
 export class Sidebar extends React.Component<SidebarProps, {}> {
   render() {
+    var loggedIn = this.props.username !== null;
     return <div id="sidebar">
       <Logo />
-      { this.props.username && <UserPanel username={ this.props.username } onLogout={ this.props.onLogout } /> }
+      { loggedIn && <UserPanel username={ this.props.username } onLogout={ this.props.onLogout } /> }
       <hr />
-      <ToastForm toastClient={ this.props.toastClient } loggedIn={ this.props.username !== null } />
+      <ToastForm toastClient={ this.props.toastClient } loggedIn={ loggedIn } />
       <hr />
     </div>;
   }
