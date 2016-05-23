@@ -107,7 +107,11 @@ export class ToastForm extends React.Component<ToastFormProps, ToastFormState> {
           ref={ ref => this.messageBox = ref }
           onChange={ e => this.handleMessageChange(e) } onKeyDown={ e => this.handleMessageKeyDown(e) }></textarea>
         <span id="characters-remaining" className={ this.charactersRemaining < 0 ? "negative" : "" }>
-          { this.charactersRemaining }
+          {
+            // BUG: Character count does not update.
+            ToastForm.CHARACTER_LIMIT
+            // this.charactersRemaining
+          }
         </span>
       </div>
       <div id="send">
