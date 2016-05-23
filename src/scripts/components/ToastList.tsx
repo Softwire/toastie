@@ -25,9 +25,9 @@ export class ToastList extends React.Component<ToastListProps, ToastListState> {
   }
 
   private get toastCards() {
-    return this.state.toasts.map((t, i) => {
-      return <div>
-        <ToastCard key={ i } toast={ t } toastClient={ this.props.toastClient } username={ this.props.username } />
+    return this.state.toasts.map((toast, index) => {
+      return <div key={ index }>
+        <ToastCard toast={ toast } toastClient={ this.props.toastClient } username={ this.props.username } />
       </div>
     });
   }
