@@ -40,7 +40,8 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
 
   componentDidMount() {
     window.addEventListener("wheel", e => {
-      this.toastList.scroll(e.deltaY);
+      // BUG: No scrolling.
+      // this.toastList.scroll(e.deltaY);
       e.preventDefault();
     });
   }

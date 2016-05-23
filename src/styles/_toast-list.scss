@@ -5,7 +5,9 @@
   height: 100%;
   box-sizing: border-box;
   padding: 10px;
-  overflow-x: scroll;
+  // BUG: No scrolling.
+  overflow-x: hidden;
+  // overflow-x: scroll;
   flex: auto;
   display: flex;
   align-content: flex-start;
