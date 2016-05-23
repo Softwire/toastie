@@ -73,8 +73,10 @@
       width: 240px;
       .message {
         width: 100%;
-        word-wrap: break-word;
-        overflow: hidden;
+        max-height: 130px;
+        // BUG: Long message overflows the width.
+        // word-wrap: break-word;
+        // overflow: hidden;
       }
       .timestamp {
         font-size: small;
