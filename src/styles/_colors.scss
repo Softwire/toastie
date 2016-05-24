@@ -7,5 +7,5 @@ $toast-yellow: #ffc80b;
   } @if $color == $toast-yellow {
     @return #ffab00;
   }
-  @return magenta;
+  @return white;
 }
