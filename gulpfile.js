@@ -7,9 +7,11 @@ var gulp = require("gulp")
   , open = require("gulp-open")
   , plumber = require("gulp-plumber")
   , sass = require("gulp-sass")
+  , util = require("gulp-util")
   , webpack = require("webpack-stream");
 
-var bust = new Bust();
+var production = !!util.env.production;
+var bust = new Bust({ production: production });
 
 gulp.task("html", function () {
   return gulp.src(["src/**/*.html"])
