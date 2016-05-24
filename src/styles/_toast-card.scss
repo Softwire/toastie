@@ -10,7 +10,7 @@
     }
   }
   .toast-body {
-    .toast-image {
+    .hashtag-carousel {
       color: $background-color;
       background-color: darken($background-color, 5);
     }
@@ -32,6 +32,7 @@
   .header {
     padding: 0 4px 4px 4px;
     margin-bottom: 4px;
+    height: 1.2em;
     display: flex;
     .toasted {
       height: 0;
@@ -40,32 +41,27 @@
       align-items: flex-end;
       font-size: 40px;
     }
-    div:last-of-type {
+    div:not(.toasted) {
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
     }
   }
   .toast-body {
     display: flex;
     flex: auto;
-    .toast-image {
-      flex: auto;
-      font-size: 50px;
+    .hashtag-carousel {
       margin: 5px 10px 5px 5px;
-      text-align: center;
-      display: flex;
-      justify-content:center;
-      flex-direction: column;
     }
     .message-body {
       display: flex;
       justify-content: space-between;
       flex-direction: column;
+      height: 120px;
       width: 240px;
-      min-width: 240px;
       .message {
         width: 100%;
-        max-height: 130px;
+        height: 100%;
         word-wrap: break-word;
         overflow: hidden;
       }
