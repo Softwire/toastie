@@ -10,12 +10,16 @@ interface HashtagCarouselProps {
 
 interface HashtagCarouselState {
   imageMap: { [hashtag: string]: string };
+  activeImage: number;
 }
 
 export class HashtagCarousel extends React.Component<HashtagCarouselProps, HashtagCarouselState> {
   constructor() {
     super();
-    this.state = { imageMap: {} };
+    this.state = { imageMap: {}, activeImage: 0 };
+    var foo = ""
+
+
   }
 
   private get images() {
@@ -33,7 +37,7 @@ export class HashtagCarousel extends React.Component<HashtagCarouselProps, Hasht
           s.imageMap[hashtag] = url;
           return s;
         });
-      }).catch(() => {}); // Ignore missing hashtags.
+      }).catch(() => { }); // Ignore missing hashtags.
     });
   }
 
@@ -43,15 +47,21 @@ export class HashtagCarousel extends React.Component<HashtagCarouselProps, Hasht
 
   componentDidMount() {
     this.fetchImages(this.props.hashtags);
+    setInterval(() => {
+      this.setState(s => {
+        s.activeImage = (s.activeImage + 1) % this.images.length;
+        return s;
+      })
+    }, 4000);
   }
 
   render() {
-    var imgs = this.images.map(image => {
-      return <img src={ image.url } alt={ image.hashtag } title={ image.hashtag } />;
+    var imgs = this.images.map((image, i) => {
+      return <img key={ i } className={ this.state.activeImage === i ? "active" : "" } src={ image.url }
+        alt={ image.hashtag } title={ image.hashtag } />;
     });
-    // TODO: Return a carousel, rather than just the first image.
     return <div className="hashtag-carousel">
-      { imgs.length > 0 ? imgs[0] : <span className="icon-toast"></span> }
+      { imgs.length > 0 ? imgs : <span className="icon-toast"></span> }
     </div>;
   }
 }

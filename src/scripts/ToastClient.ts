@@ -37,7 +37,7 @@ export class ToastClient {
     if (promise !== undefined) {
       return promise;
     }
-    var fileName = hashtag.substring(1).toLowerCase();
+    var fileName = hashtag.substring(1).toLowerCase(); // Remove # character.
     promise = this.hashtagsRef.child(fileName).getDownloadURL();
     ToastClient.HASHTAG_URL_CACHE[hashtag] = promise;
     return promise;

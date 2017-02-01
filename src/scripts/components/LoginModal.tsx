@@ -27,7 +27,7 @@ export class LoginModal extends React.Component<LoginModalProps, LoginModalState
   private get validations() {
     return [
       {
-        isValid: this.state.username.length <= 30,
+        isValid: this.state.username.length <= LoginModal.MAX_USERNAME_LENGTH,
         message: `Username cannot be more than ${LoginModal.MAX_USERNAME_LENGTH} characters.`
       },
       {

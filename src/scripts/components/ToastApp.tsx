@@ -21,7 +21,7 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
   }
 
   private handleLogin(username: string) {
-    this.setState(s => {
+    this.setState({
       s.username = username;
       return s;
     });
@@ -29,7 +29,7 @@ export class ToastApp extends React.Component<{}, ToastAppState> {
   }
 
   private handleLogout() {
-    this.setState(s => {
+    this.setState({username: null});
       s.username = null;
       return s;
     });
